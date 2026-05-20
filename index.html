@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mary Joy Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="nav-container"></div>
+
+    <main id="body-container"></main>
+
+    <div id="footer-container"></div>
+
+<script>
+async function loadHTML(id, file) {
+    const response = await fetch(file);
+    const data = await response.text();
+    document.getElementById(id).innerHTML = data;
+}
+
+async function loadPage() {
+    await loadHTML("nav-container", "nav.html");
+    await loadHTML("body-container", "body.html");
+    await loadHTML("footer-container", "footer.html");
+
+    // Load script AFTER HTML loads
+    const script = document.createElement("script");
+    script.src = "script.js";
+    document.body.appendChild(script);
+}
+
+loadPage();
+</script>
+
+</body>
+</html>
